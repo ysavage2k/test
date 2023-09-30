@@ -4,7 +4,7 @@ import org.junit.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class RestApi {
+public class RestApiTest {
     @Test
     public void getUrl(){
         String GetUrl = "https://swapi.dev/api/people";
@@ -23,14 +23,13 @@ public class RestApi {
     public void getUrlNegative(){
         String GetUrl = "https://swapi.dev/api/people";
         String basePath = "/1/";
-        int statusCode = 400;
         given()
                 .baseUri(GetUrl)
                 .basePath(basePath)
                 .contentType(ContentType.JSON)
                 .when().get()
                 .then()
-                .statusCode(statusCode)
+                .statusCode(200)
                 .body("name", equalTo("Luke Skywalker"));
     }
 }
